@@ -19,6 +19,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -29,11 +32,10 @@ app.get('/crash-test', () => {
 
 app.post('/signin', login);
 app.post('/signup', createUser);
-app.use(bodyParser.json());
 app.use('/', auth, usersRouter);
 app.use('/', auth, cardsRouter);
 
-app.user(errorLogger);
+app.use(errorLogger);
 
 app.use(errors());
 app.use('*', (req, res) => {
