@@ -135,9 +135,9 @@ export default class Api {
 
 
 export const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-16',
+  url: 'http://api.mxnsoon.practice.nomoredomains.icu/',
   headers: {
-    authorization: 'cce65d1e-fda6-465b-9ce4-eb05b78869dc',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
