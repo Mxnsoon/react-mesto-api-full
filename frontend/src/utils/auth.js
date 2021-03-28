@@ -7,7 +7,6 @@ export const register = (email, password) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         },
-        credentials: "include",
         body: JSON.stringify({ email, password })
     })
     .then((res) => {
@@ -31,7 +30,6 @@ export const authorize = (email, password) => {
             'Accept': 'application/json',
             "Content-Type": "application/json"
         },
-        credentials: "include",
         body: JSON.stringify({ email, password })
     })
     .then((res) => {
