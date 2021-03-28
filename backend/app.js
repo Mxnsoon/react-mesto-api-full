@@ -20,16 +20,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-const options = {
-  origin: [
-    'http://localhost:3000',
-    'http://mxnsoon.practice.nomoredomains.icu',
-    'http://api.mxnsoon.practice.nomoredomains.icu',
-  ],
-  credentials: true,
-};
-
-app.use('*', cors(options));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
