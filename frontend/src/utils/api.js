@@ -135,7 +135,7 @@ export default class Api {
 
 
 export const api = new Api({
-  url: 'http://api.mxnsoon.practice.nomoredomains.icu/',
+  url: 'http://api.mxnsoon.practice.nomoredomains.icu',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`
