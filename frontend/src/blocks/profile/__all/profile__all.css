@@ -1,0 +1,7 @@
+.profile__all {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 30px;
+    
+}

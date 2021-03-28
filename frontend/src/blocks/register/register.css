@@ -1,0 +1,15 @@
+@import url(./__button-save/register__button-save.css);
+@import url(./__form/register__form.css);
+@import url(./__input/register__input.css);
+@import url(./__title/register__title.css);
+@import url(./__signin/register__signin.css);
+@import url(./__register-link/register__register-link.css);
+
+.register {
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}

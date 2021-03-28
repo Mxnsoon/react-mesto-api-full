@@ -1,0 +1,40 @@
+.popup__save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 358px;
+    width: 100%;
+    min-height: 50px;
+    margin: 0 auto;
+    margin-top: 34px;
+    background: #000000;
+    border-radius: 2px;
+    padding: 0;
+    margin-bottom: 36px;
+    color: #ffffff;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    border: none;
+  }
+  
+  .popup__save:hover {
+    outline: none;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+  }
+  
+  @media (max-width: 530px) {
+    .popup__save {
+      max-width: 280px;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .popup__save {
+      max-width: 200px;
+    }
+  }

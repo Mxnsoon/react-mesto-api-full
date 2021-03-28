@@ -1,0 +1,5 @@
+.popup__field_error-visible {
+  visibility: visible;
+  opacity: 1;
+  padding-left: 35px;
+}
