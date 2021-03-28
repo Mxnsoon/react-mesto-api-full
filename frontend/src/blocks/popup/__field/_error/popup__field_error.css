@@ -1,0 +1,12 @@
+.popup__field_error {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .3s, opacity .3s ease;
+  /*width: 348px;*/
+  font-style: normal;
+  font-weight: normal;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FF0000;
+}

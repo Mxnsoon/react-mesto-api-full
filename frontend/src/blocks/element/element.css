@@ -1,0 +1,23 @@
+@import url(./__list/element__list.css);
+
+
+
+.element {
+    max-width: 882px;
+    margin: 0 auto;
+    margin-top: 51px;
+    padding-bottom: 61px;
+    
+}
+
+@media only screen and (max-width: 890px) {
+    .element {
+       max-width: 582px;
+    }
+  }
+
+@media only screen and (max-width: 590px) {
+    .element {
+        max-width: 282px;
+     }
+}
