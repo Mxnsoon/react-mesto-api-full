@@ -4,3 +4,4 @@
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 http://mxnsoon.practice.nomoredomains.icu/
 http://api.mxnsoon.practice.nomoredomains.icu/
+178.154.204.201
