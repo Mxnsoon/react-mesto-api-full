@@ -25,6 +25,8 @@ const allowedCors = [
   'https://www.mxnsoon.practice.nomoredomains.icu',
   'http://api.mxnsoon.practice.nomoredomains.icu',
   'https://www.api.mxnsoon.practice.nomoredomains.icu',
+  'https://mxnsoon.practice.nomoredomains.icu',
+  'https://api.mxnsoon.practice.nomoredomains.icu',
   'http://localhost:3000',
 ];
 
