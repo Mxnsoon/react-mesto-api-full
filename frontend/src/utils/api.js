@@ -111,7 +111,7 @@
   }
 
   likeSet(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
     }).then((res) => {
@@ -123,7 +123,7 @@
   }
 
   likeRemove(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
