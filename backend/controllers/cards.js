@@ -72,7 +72,7 @@ const dislikeCard = (req, res, next) => Card.findByIdAndUpdate(
 )
   .then((card) => {
     if (!card) {
-      throw new NotFoundError('Карточка не найдена');
+      throw new NotFoundError('Невалидная карточка');
     }
     return res.status(200).send(card);
   })
