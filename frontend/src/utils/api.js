@@ -1,4 +1,4 @@
-export default class Api {
+ class Api {
   constructor(options) {
     this._url = options.url;
     this._headers = options.headers;
@@ -6,6 +6,7 @@ export default class Api {
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
+      method: "GET",
       headers: this._headers
     }).then((res) => {
       if (res.ok) {
@@ -17,6 +18,7 @@ export default class Api {
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
+      method: "GET",
       headers: this._headers
     }).then((res) => {
       if (res.ok) {
@@ -138,6 +140,6 @@ export const api = new Api({
   url: 'http://api.mxnsoon.practice.nomoredomains.icu',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
   }
 });

@@ -30,7 +30,76 @@ function App() {
   const [email, setEmail] = React.useState('');
   const [isRequestSuccessful, setisRequestSuccessful] = React.useState(false);
 
+  function handleRegister(email, password) {
+    auth.register(email, password)
+    .then((res) => {
+      if (res) {
+        setIsInfoTooltipOpen(true)
+        setisRequestSuccessful(true)
+        history.push('/sign-in')
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+      setIsInfoTooltipOpen(true)
+      setisRequestSuccessful(false)
+    })
+  }
+
+  function handleLogin(email, password) {
+    auth.authorize(email, password)
+    .then((res) => {
+      if (res.token){
+          localStorage.setItem('jwt', res.token)
+          return res
+      } else {
+          return
+      }
+  })
+    .then(data => {
+      if (data.token) {
+        setLoggedIn(true)
+        setEmail(email)
+        history.push('/')
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      setIsInfoTooltipOpen(true)
+      setisRequestSuccessful(false)
+    })
+  }
+
+  function handleLogout() {
+    setLoggedIn(false)
+    setEmail(email)
+    localStorage.removeItem('jwt')
+    history.push('/sign-in')
+  }
+
+  function handleTokenCheck() {
+    const jwt = localStorage.getItem('jwt')
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true)
+            setEmail(res.email)
+            history.push('/')
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+
+  React.useEffect(() => {
+    handleTokenCheck()
+  }, [])
+
   React.useEffect(() => { 
+    if (loggedIn) {
     api.getInitialCards() 
     .then((data) => { 
         setCards(data)
@@ -38,16 +107,19 @@ function App() {
     .catch((err) => {
         console.log(err);
     });
-}, []); 
+  }
+}, [loggedIn]); 
 
-  React.useEffect(() => {
-    api.getUserData().then((data) => {
-      setCurrentUser(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, []);
+React.useEffect(() => {
+  if (loggedIn) {
+  api.getUserData().then((data) => {
+    setCurrentUser(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+}, [loggedIn]);
 
   function handleUpdateUser(user) {
     api.setUserData(user).then((res) => {
@@ -70,7 +142,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       setCards(newCards);
@@ -126,74 +198,6 @@ function App() {
     setIsInfoTooltipOpen(false)
   }
   
-  function handleRegister(email, password) {
-    auth.register(email, password)
-    .then((res) => {
-      if (res) {
-        setIsInfoTooltipOpen(true)
-        setisRequestSuccessful(true)
-        history.push('/sign-in')
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-      setIsInfoTooltipOpen(true)
-      setisRequestSuccessful(false)
-    })
-  }
-
-  function handleLogin(email, password) {
-    auth.authorize(email, password)
-    .then((res) => {
-      if (res.token){
-          localStorage.setItem('jwt', res.token)
-          return res
-      } else {
-          return
-      }
-  })
-    .then(data => {
-      if (data.token) {
-        setLoggedIn(true)
-        setEmail(email)
-        history.push('/')
-      }
-    })
-    .catch(err => {
-      console.log(err)
-      setIsInfoTooltipOpen(true)
-      setisRequestSuccessful(false)
-    })
-  }
-
-  function handleLogout() {
-    setLoggedIn(false)
-    setEmail(email)
-    localStorage.removeItem('jwt')
-    history.push('/sign-in')
-  }
-
-  function handleTokenCheck() {
-    const jwt = localStorage.getItem('jwt')
-    if (jwt) {
-      auth.getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true)
-            setEmail(res.data.email)
-            history.push('/')
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }
-
-  React.useEffect(() => {
-    handleTokenCheck()
-  }, [])
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
