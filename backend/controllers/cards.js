@@ -24,7 +24,7 @@ const postCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
-    .catch(() => {
+    .orFail(() => {
       throw new NotFoundError('Нет карточки с таким id');
     })
     .then((data) => {
