@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require('./errors/NotFoundError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -77,8 +78,8 @@ app.use('/', auth, cardsRouter);
 app.use(errorLogger);
 
 app.use(errors());
-app.use('*', (req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
+app.use('*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
