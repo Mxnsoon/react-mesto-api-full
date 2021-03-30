@@ -13,10 +13,10 @@ const postCard = (req, res, next) => {
   const { name, link } = req.body;
   const owner = req.user._id;
   Card.create({ name, link, owner })
-    .then((card) => res.send(card))
+    .then((card) => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError('Данные введены неверно');
+        next(new BadRequestError('Данные введены неверно'));
       }
       next(err);
     });
